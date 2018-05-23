@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SetMinutes : MonoBehaviour {
+
+    /********************************************
+     * Minutes in DataScene, next to scroll bar
+     ********************************************/
+
+    [SerializeField] private Scrollbar scroll;
+    private Text timeVal;
+
+    private void Start()
+    {
+        timeVal = this.GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        timeVal.text = getValue();
+    }
+
+    public int getTime()
+    {
+        int time = (int)System.Char.GetNumericValue(timeVal.text[0]);
+        Debug.Log(time);
+        return time;
+    }
+
+    private string getValue()
+    {
+        int val = (int)(2.0f + scroll.value*5.0f);
+        return System.Convert.ToString(val) + " min";
+    }
+}
